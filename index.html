@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Sushi Conveyor Belt Recipes&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { useState, useEffect } = React;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { ShoppingCart, Menu, Home, X } = lucide;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Sample recipe data with placeholders</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const recipes = [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 1, name: 'Recipe 1', categories: ['breakfast', 'lunch'], recipe: 'Recipe card content for dish 1', grocery: 'Grocery list for dish 1' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 2, name: 'Recipe 2', categories: ['lunch', 'dinner'], recipe: 'Recipe card content for dish 2', grocery: 'Grocery list for dish 2' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 3, name: 'Recipe 3', categories: ['breakfast'], recipe: 'Recipe card content for dish 3', grocery: 'Grocery list for dish 3' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 4, name: 'Recipe 4', categories: ['dinner', 'dessert'], recipe: 'Recipe card content for dish 4', grocery: 'Grocery list for dish 4' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 5, name: 'Recipe 5', categories: ['pre-made'], recipe: 'Recipe card content for dish 5', grocery: 'Grocery list for dish 5' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 6, name: 'Recipe 6', categories: ['lunch', 'dinner'], recipe: 'Recipe card content for dish 6', grocery: 'Grocery list for dish 6' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 7, name: 'Recipe 7', categories: ['breakfast', 'dessert'], recipe: 'Recipe card content for dish 7', grocery: 'Grocery list for dish 7' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 8, name: 'Recipe 8', categories: ['dinner'], recipe: 'Recipe card content for dish 8', grocery: 'Grocery list for dish 8' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 9, name: 'Recipe 9', categories: ['pre-made', 'lunch'], recipe: 'Recipe card content for dish 9', grocery: 'Grocery list for dish 9' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 10, name: 'Recipe 10', categories: ['dessert'], recipe: 'Recipe card content for dish 10', grocery: 'Grocery list for dish 10' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 11, name: 'Recipe 11', categories: ['breakfast', 'lunch'], recipe: 'Recipe card content for dish 11', grocery: 'Grocery list for dish 11' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 12, name: 'Recipe 12', categories: ['dinner', 'pre-made'], recipe: 'Recipe card content for dish 12', grocery: 'Grocery list for dish 12' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 13, name: 'Recipe 13', categories: ['lunch'], recipe: 'Recipe card content for dish 13', grocery: 'Grocery list for dish 13' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 14, name: 'Recipe 14', categories: ['breakfast', 'dessert'], recipe: 'Recipe card content for dish 14', grocery: 'Grocery list for dish 14' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 15, name: 'Recipe 15', categories: ['dinner'], recipe: 'Recipe card content for dish 15', grocery: 'Grocery list for dish 15' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 16, name: 'Recipe 16', categories: ['pre-made'], recipe: 'Recipe card content for dish 16', grocery: 'Grocery list for dish 16' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 17, name: 'Recipe 17', categories: ['lunch', 'dinner'], recipe: 'Recipe card content for dish 17', grocery: 'Grocery list for dish 17' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 18, name: 'Recipe 18', categories: ['breakfast'], recipe: 'Recipe card content for dish 18', grocery: 'Grocery list for dish 18' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 19, name: 'Recipe 19', categories: ['dessert', 'pre-made'], recipe: 'Recipe card content for dish 19', grocery: 'Grocery list for dish 19' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 20, name: 'Recipe 20', categories: ['dinner'], recipe: 'Recipe card content for dish 20', grocery: 'Grocery list for dish 20' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 21, name: 'Recipe 21', categories: ['breakfast', 'lunch'], recipe: 'Recipe card content for dish 21', grocery: 'Grocery list for dish 21' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 22, name: 'Recipe 22', categories: ['lunch'], recipe: 'Recipe card content for dish 22', grocery: 'Grocery list for dish 22' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 23, name: 'Recipe 23', categories: ['dinner', 'dessert'], recipe: 'Recipe card content for dish 23', grocery: 'Grocery list for dish 23' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 24, name: 'Recipe 24', categories: ['pre-made'], recipe: 'Recipe card content for dish 24', grocery: 'Grocery list for dish 24' },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ id: 25, name: 'Recipe 25', categories: ['breakfast'], recipe: 'Recipe card content for dish 25', grocery: 'Grocery list for dish 25' },</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const App = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [currentPage, setCurrentPage] = useState('home');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [cart, setCart] = useState([]);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [menuOpen, setMenuOpen] = useState(false);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [selectedCategory, setSelectedCategory] = useState(null);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [selectedRecipe, setSelectedRecipe] = useState(null);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [animationPaused, setAnimationPaused] = useState(false);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const categories = ['breakfast', 'lunch', 'dinner', 'dessert', 'pre-made'];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const filteredRecipes = selectedCategory</p>
+<p class="p1"><span class="Apple-converted-space">            </span>? recipes.filter(r =&gt; r.categories.includes(selectedCategory))</p>
+<p class="p1"><span class="Apple-converted-space">            </span>: recipes;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handlePlateClick = (recipe) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setSelectedRecipe(recipe);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setAnimationPaused(true);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleCloseRecipe = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setSelectedRecipe(null);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setAnimationPaused(false);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleAddToCart = (recipe) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setCart([...cart, recipe]);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>handleCloseRecipe();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleCategoryClick = (category) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setSelectedCategory(category);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setMenuOpen(false);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleExportPDF = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.print();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>// Split recipes into 3 rows of 25</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const getRowRecipes = (rowIndex) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const recipesPerRow = 25;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const startIdx = rowIndex * recipesPerRow;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const rowRecipes = [];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; recipesPerRow; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>const recipeIdx = (startIdx + i) % filteredRecipes.length;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (filteredRecipes[recipeIdx]) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>rowRecipes.push(filteredRecipes[recipeIdx]);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return rowRecipes;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (currentPage === 'cart') {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div style={{ backgroundColor: '#F9FFF1', minHeight: '100vh' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{/* Header */}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style={{ display: 'flex', alignItems: 'center', padding: '20px', justifyContent: 'space-between' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div style={{ flex: '0 0 66.66%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#458352', height: '80px', borderRadius: '8px' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div style={{ fontSize: '24px', color: '#F9FFF1', fontWeight: 'bold' }}&gt;LOGO PLACEHOLDER&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div style={{ display: 'flex', gap: '15px', marginLeft: '20px' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onClick={() =&gt; setCurrentPage('home')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;Home size={32} color="#458352" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{/* Divider */}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style={{ height: '2px', backgroundColor: '#458352', margin: '0 20px' }}&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{/* Cart Content */}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style={{ padding: '40px 20px' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;h1 style={{ color: '#458352', marginBottom: '30px' }}&gt;Recipe Cart&lt;/h1&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{cart.length === 0 ? (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p style={{ color: '#458352', fontSize: '18px' }}&gt;Your cart is empty&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{cart.map((item, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div key={idx} style={{ backgroundColor: 'white', border: '2px solid #458352', borderRadius: '8px', padding: '20px', marginBottom: '20px' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;h3 style={{ color: '#458352', marginBottom: '10px' }}&gt;{item.name} - Grocery List&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;p style={{ color: '#458352' }}&gt;{item.grocery}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>))}</p>
+<p class="p2"><span class="Apple-converted-space">                      </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>onClick={handleExportPDF}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>backgroundColor: '#F9FFF1',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>border: '2px solid #458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>color: '#458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>padding: '15px 30px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>borderRadius: '8px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>cursor: 'pointer',</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>fontSize: '16px',</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>fontWeight: 'bold',</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>marginTop: '20px'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Export as PDF</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style={{ backgroundColor: '#F9FFF1', minHeight: '100vh', overflow: 'hidden' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Header */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div style={{ display: 'flex', alignItems: 'center', padding: '20px', justifyContent: 'space-between' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style={{ flex: '0 0 66.66%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#458352', height: '80px', borderRadius: '8px' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div style={{ fontSize: '24px', color: '#F9FFF1', fontWeight: 'bold' }}&gt;LOGO PLACEHOLDER&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style={{ display: 'flex', gap: '15px', marginLeft: '20px' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button onClick={() =&gt; setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', position: 'relative' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;Menu size={32} color="#458352" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button onClick={() =&gt; setCurrentPage('cart')} style={{ background: 'none', border: 'none', cursor: 'pointer', position: 'relative' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ShoppingCart size={32} color="#458352" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{cart.length &gt; 0 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>position: 'absolute',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>top: '-5px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>right: '-5px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: '#458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>color: '#F9FFF1',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderRadius: '50%',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>width: '24px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>height: '24px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>display: 'flex',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>alignItems: 'center',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>justifyContent: 'center',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fontSize: '12px',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fontWeight: 'bold'</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>}}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{cart.length}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Divider */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div style={{ height: '2px', backgroundColor: '#458352', margin: '0 20px' }}&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Menu Popup */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{menuOpen &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>position: 'absolute',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>right: '20px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>top: '120px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>backgroundColor: '#F9FFF1',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>border: '2px solid #458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>borderRadius: '8px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>padding: '15px',</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>zIndex: 1000,</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>display: 'flex',</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>flexDirection: 'column',</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>gap: '10px'</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{categories.map(cat =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>key={cat}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={() =&gt; handleCategoryClick(cat)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: '#F9FFF1',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>border: '2px solid #458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>color: '#458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>padding: '10px 20px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderRadius: '8px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>cursor: 'pointer',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>textTransform: 'capitalize',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fontWeight: 'bold'</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{cat}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onClick={() =&gt; { setSelectedCategory(null); setMenuOpen(false); }}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>backgroundColor: '#458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>border: '2px solid #458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>color: '#F9FFF1',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>padding: '10px 20px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>borderRadius: '8px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>cursor: 'pointer',</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>fontWeight: 'bold'</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Show All</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Conveyor Belts */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div style={{ padding: '40px 20px' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{[0, 1, 2].map(rowIndex =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;ConveyorBelt<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>key={rowIndex}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>recipes={getRowRecipes(rowIndex)}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onPlateClick={handlePlateClick}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>paused={animationPaused}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Recipe Card Popup */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{selectedRecipe &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>position: 'fixed',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>top: 0,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>left: 0,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>right: 0,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>bottom: 0,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>backgroundColor: 'rgba(0,0,0,0.5)',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>display: 'flex',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>alignItems: 'center',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>justifyContent: 'center',</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>zIndex: 2000</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: 'white',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>border: '3px solid #458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderRadius: '12px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>padding: '30px',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>maxWidth: '500px',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>width: '90%',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>position: 'relative'</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>}}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={handleCloseRecipe}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>position: 'absolute',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>top: '15px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>right: '15px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>background: 'none',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>border: 'none',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>cursor: 'pointer'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;X size={28} color="#458352" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 style={{ color: '#458352', marginBottom: '20px' }}&gt;{selectedRecipe.name}&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p style={{ color: '#458352', marginBottom: '30px' }}&gt;{selectedRecipe.recipe}&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={() =&gt; handleAddToCart(selectedRecipe)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>position: 'absolute',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>bottom: '15px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>right: '15px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: '#458352',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>color: '#F9FFF1',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>border: 'none',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>padding: '12px 24px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderRadius: '8px',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>cursor: 'pointer',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fontWeight: 'bold'</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>Add to Cart</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ConveyorBelt = ({ recipes, onPlateClick, paused }) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [offset, setOffset] = useState(0);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>useEffect(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (paused) return;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const interval = setInterval(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>setOffset(prev =&gt; (prev + 1) % 2000);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 50);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return () =&gt; clearInterval(interval);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}, [paused]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style={{ marginBottom: '40px' }}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Conveyor Belt Background Placeholder */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>backgroundColor: '#E8F5E9',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>border: '2px solid #458352',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>borderRadius: '8px',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: '120px',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>position: 'relative',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>overflow: 'hidden'</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>display: 'flex',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>position: 'absolute',</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>left: `-${offset}px`,</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>height: '100%',</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>alignItems: 'center'</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{/* Render plates multiple times for infinite scroll */}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{[...recipes, ...recipes, ...recipes].map((recipe, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>key={idx}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={() =&gt; onPlateClick(recipe)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>style={{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>width: '80px',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>height: '80px',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderRadius: '50%',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: '#458352',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>margin: '0 30px',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>cursor: 'pointer',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>flexShrink: 0,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>display: 'flex',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>alignItems: 'center',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>justifyContent: 'center',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>color: '#F9FFF1',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fontWeight: 'bold',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>fontSize: '12px',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>textAlign: 'center',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>transition: 'transform 0.2s'</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onMouseEnter={(e) =&gt; e.currentTarget.style.transform = 'scale(1.1)'}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onMouseLeave={(e) =&gt; e.currentTarget.style.transform = 'scale(1)'}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{recipe.id}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const root = ReactDOM.createRoot(document.getElementById('root'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>root.render(&lt;App /&gt;);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
